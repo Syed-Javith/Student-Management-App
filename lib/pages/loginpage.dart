@@ -15,11 +15,15 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  bool isLoading = false;
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
 
   void _login() async {
     try {
+      setState(() {
+        isLoading = true;
+      });
       final result = await http.post(Uri.parse("$BASE_URI/auth/login"), body: {
         "email": _usernameController.text,
         "password": _passwordController.text
@@ -40,6 +44,10 @@ class _LoginPageState extends State<LoginPage> {
       }
     } catch (e) {
       print(e);
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
@@ -68,9 +76,10 @@ class _LoginPageState extends State<LoginPage> {
           const SizedBox(height: 20.0),
           ElevatedButton(
             onPressed: () {
+              if (isLoading) return;
               _login();
             },
-            child: const Text('Login'),
+            child: Text(isLoading ? 'Loading...' : 'Login'),
           ),
         ],
       ),

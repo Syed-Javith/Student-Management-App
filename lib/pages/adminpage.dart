@@ -28,6 +28,7 @@ class _AdminPageState extends State<AdminPage> {
                   onPressed: () {
                     setState(() {
                       isAddStudent = !isAddStudent;
+                      isFindStudent = false;
                     });
                   },
                   child: Text('Add User')),
@@ -35,6 +36,7 @@ class _AdminPageState extends State<AdminPage> {
                   onPressed: () {
                     setState(() {
                       isFindStudent = !isFindStudent;
+                      isAddStudent = false;
                     });
                   },
                   child: Text('Find Student')),
