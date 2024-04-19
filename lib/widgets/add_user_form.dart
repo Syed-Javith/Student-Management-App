@@ -32,9 +32,14 @@ class _AddUserFormState extends State<AddUserForm> {
         year: int.parse(_yearController.text));
 
     try {
-      final response = await http
-          .post(Uri.parse('$BASE_URI/student/add'), body: {'user': data});
-      print(response);
+      final response = await http.post(Uri.parse('$BASE_URI/admin/register'),
+          body: data.toString());
+      if (response.statusCode == 200) {
+        print("user added");
+      } else if (response.statusCode == 400) {
+        print("user already exists");
+      }
+      print(response.body);
     } catch (e) {
       print(e);
     } finally {}

@@ -17,32 +17,35 @@ class _AdminPageState extends State<AdminPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Admin Page'),
+        actions: [TextButton(onPressed: () {}, child: Icon(Icons.account_box))],
       ),
-      body: Container(
-        width: double.infinity,
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      isAddStudent = !isAddStudent;
-                      isFindStudent = false;
-                    });
-                  },
-                  child: Text('Add User')),
-              ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      isFindStudent = !isFindStudent;
-                      isAddStudent = false;
-                    });
-                  },
-                  child: Text('Find Student')),
-              isFindStudent ? FindStudentForm() : SizedBox(),
-              isAddStudent ? AddUserForm() : SizedBox()
-            ]),
+      body: SingleChildScrollView(
+        child: Container(
+          width: double.infinity,
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        isAddStudent = !isAddStudent;
+                        isFindStudent = false;
+                      });
+                    },
+                    child: Text('Add User')),
+                ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        isFindStudent = !isFindStudent;
+                        isAddStudent = false;
+                      });
+                    },
+                    child: Text('Find Student')),
+                isFindStudent ? FindStudentForm() : SizedBox(),
+                isAddStudent ? AddUserForm() : SizedBox()
+              ]),
+        ),
       ),
     );
   }
