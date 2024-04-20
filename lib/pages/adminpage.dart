@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:student/pages/profilepage.dart';
 import 'package:student/widgets/add_user_form.dart';
 import 'package:student/widgets/find_student_form.dart';
 
@@ -17,7 +18,14 @@ class _AdminPageState extends State<AdminPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Admin Page'),
-        actions: [TextButton(onPressed: () {}, child: Icon(Icons.account_box))],
+        actions: [
+          TextButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ProfilePage()));
+              },
+              child: Icon(Icons.account_box))
+        ],
       ),
       body: SingleChildScrollView(
         child: Container(
